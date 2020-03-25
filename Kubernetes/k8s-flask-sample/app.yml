@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-sample-deployment
+  labels:
+    app: flask-sample-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-sample
+  template:
+    metadata:
+      labels:
+        app: flask-sample
+    spec:
+      containers:
+      - name: flask-sample
+        image: skilfulll1/flask-sample
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - name: http
+            containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-flask-sample-deployment
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 5000
+    # NodePort: 31007
+  selector:
+     app: flask-sample-deployment
+  type: NodePort
