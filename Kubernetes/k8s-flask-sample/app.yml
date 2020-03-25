@@ -22,5 +22,33 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-            - name: http
+            - name: flask-http
               containerPort: 5000
+          livenessProbe:
+              httpGet:
+                path: /
+                port: flask-http
+              initialDelaySeconds: 15
+              timeoutSeconds: 30
+          readinessProbe:
+              httpGet:
+                path: /
+                port: flask-http
+              initialDelaySeconds: 15
+              timeoutSeconds: 30
+
+
+# ---
+
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name:  flask-sample-deployment-service
+# spec:
+#   selector:
+#     app: flask-sample-deployment
+#   type:  NodePort
+#   ports:
+#   - name:  name-of-the-port
+#     port:  5000
+#     targetPort:  flask-http
