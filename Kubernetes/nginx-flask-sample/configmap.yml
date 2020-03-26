@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  labels:
+    app: nginx-config
+data:
+  reverseproxy.conf: |-
+    server {
+      listen        80;
+      server_name   localhost;
+
+      location / {
+        proxy_pass  http://127.0.0.1:5000;
+      }
+    }

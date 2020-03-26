@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-proxy-deployment-service
+spec:
+  selector:
+    app: nginx-proxy-deployment
+  type: NodePort
+  ports:
+  - name: nginx-port
+    port: 80
+    targetPort: nginx-port
