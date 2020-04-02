@@ -12,7 +12,7 @@ aws s3api put-bucket-versioning --bucket alex-cluster-k8s-local --versioning-con
 set NAME=cluster.k8s.local
 set KOPS_STATE_STORE=s3://alex-cluster-k8s-local
 
-kops create cluster --zones us-east-1a ${NAME}--state ${KOPS_STATE_STORE} --yes
+kops create cluster --zones us-east-1a ${NAME}--state ${KOPS_STATE_STORE} --node-size=t2.micro --master-size=t2.micro --yes
 
 kops create secret --name${NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 
@@ -25,7 +25,7 @@ kops validate cluster --state ${KOPS_STATE_STORE}
 set NAME=cluster.k8s.local
 set KOPS_STATE_STORE=s3://alex-cluster-k8s-local
 
-kops create cluster --zones us-east-1a %NAME% --state %KOPS_STATE_STORE% --yes
+kops create cluster --zones us-east-1a %NAME% --state %KOPS_STATE_STORE% --node-size=t2.micro --master-size=t2.micro --yes
 
 kops create secret --name %NAME% sshpublickey admin -i ssh/id_rsa.pub
 
