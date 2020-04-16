@@ -7,7 +7,7 @@ import CloudFlare
 from dotenv import load_dotenv
 
 def get_ec2_ip():
-    return requests.get("http://169.254.169.254/latest/meta-data/public-ipv4").content
+    return requests.get("http://169.254.169.254/latest/meta-data/public-ipv4").content.decode()
 
 
 class Cloudflare():
@@ -41,7 +41,7 @@ def main():
         os.mknod("update_dns.log")
 
     dns_records = [
-        {'name': '@', 'type': 'A', 'content': get_ec2_ip().decode(), 'proxied': True}
+        {'name': '@', 'type': 'A', 'content': get_ec2_ip(), 'proxied': True}
     ]
     
     try:
