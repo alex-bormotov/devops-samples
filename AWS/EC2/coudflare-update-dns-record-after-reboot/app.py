@@ -1,4 +1,5 @@
 import os
+import time
 import json
 import logging
 import requests
@@ -35,9 +36,12 @@ def main():
     load_dotenv()
     if os.path.exists("update_dns.log"):
         os.remove("update_dns.log")
+        os.mknod("update_dns.log")
+    else:
+        os.mknod("update_dns.log")
 
     dns_records = [
-        {'name': '@', 'type': 'A', 'content': get_ec2_ip(), 'proxied': True}
+        {'name': '@', 'type': 'A', 'content': get_ec2_ip().decode(), 'proxied': True}
     ]
     
     try:
@@ -48,4 +52,5 @@ def main():
         logging.info(e)
 
 if __name__ == "__main__":
+    time.sleep(33)
     main()
