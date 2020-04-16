@@ -3,10 +3,6 @@
 > clone it
 
 ```bash
-git clone https://github.com/alex-bormotov/devops-samples/tree/master/AWS/EC2/coudflare-update-dns-record-after-reboot
-```
-
-```bash
 sudo apt install python-pip
 ```
 
