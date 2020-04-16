@@ -3,11 +3,11 @@
 > clone it
 
 ```bash
-sudo apt install python-pip
+sudo apt install python-pip3
 ```
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 > create .env file and put there Cloudflare zone id and api token
