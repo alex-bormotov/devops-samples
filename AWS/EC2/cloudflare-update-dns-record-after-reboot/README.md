@@ -27,7 +27,7 @@ crontab -e
 > add to the end of file
 
 ```bash
-@reboot /usr/bin/python3 /home/ubuntu/coudflare-update-dns-record-after-reboot/app.py
+@reboot /usr/bin/python3 /home/ubuntu/cloudflare-update-dns-record-after-reboot/app.py
 ```
 
 > check it
