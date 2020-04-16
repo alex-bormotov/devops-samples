@@ -33,7 +33,8 @@ class Cloudflare():
 
 def main():
     load_dotenv()
-    os.remove("update_dns.log")
+    if os.path.exists("update_dns.log"):
+        os.remove("update_dns.log")
 
     dns_records = [
         {'name': '@', 'type': 'A', 'content': get_ec2_ip(), 'proxied': True}
