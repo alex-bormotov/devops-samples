@@ -3,7 +3,7 @@
 > clone it
 
 ```bash
-sudo apt install python-pip3
+sudo apt install python3-pip
 ```
 
 ```bash
