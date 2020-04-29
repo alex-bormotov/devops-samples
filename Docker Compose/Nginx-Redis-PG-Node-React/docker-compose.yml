@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+  redis:
+    image: 'redis:latest'
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '8080:80'
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./backend
+    volumes:
+      - /app/node_modules # don't rebuild modules again
+      - ./backend:/app # add node dir to container
+    environment:
+      REDIS_HOST=redis
+      REDIS_PORT=6379
+      PGUSER=postgres
+      PGHOST=postgres
+      PGDATABASE=postgres
+      PGPASSWORD=postgres_password
+      PGPORT=5432
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
