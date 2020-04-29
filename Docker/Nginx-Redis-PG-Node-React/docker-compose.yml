@@ -7,13 +7,13 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./nginx
     ports:
       - '8080:80'
   backend:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./backend
     volumes:
       - /app/node_modules # don't rebuild modules again
@@ -28,7 +28,7 @@ services:
       PGPORT=5432
   frontend:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./frontend
     volumes:
       - /app/node_modules
