@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "path to docker hub image",
+            "hostname": "frontend",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "backend",
+            "image": "path to docker hub image",
+            "hostname": "backend",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "nginx",
+            "image": "path to docker hub image",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["frontend", "backend"],
+            "memory": 128
+        }
+    ]
+}
